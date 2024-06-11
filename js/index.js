@@ -1,14 +1,16 @@
-const loadMeals = () => {
-fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+const loadMeals = (search) => {
+    const url =  ` https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`;
+fetch(url)
     .then(res => res.json())
     .then ( data => displayMeals(data.meals))
 }
 
-loadMeals();
+
 
  const displayMeals =(meals)=>{
 
      const mealContainer = document.getElementById('meal-container');
+     mealContainer.innerHTML = '';
      meals.forEach(meal => {
          console.log(meal)
          const mealdiv = document.createElement('div');
@@ -34,3 +36,14 @@ loadMeals();
 
      });
  }
+        const searchfood =() =>{
+const seacrhFeild = document.getElementById('search-text')
+ const searchText = seacrhFeild.value;
+ searchText.innerHTML = ''
+loadMeals(searchText);
+// console.log('paisi re')
+
+
+        }
+
+//  loadMeals('pizza');
